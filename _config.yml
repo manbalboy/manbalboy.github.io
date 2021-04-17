@@ -26,8 +26,8 @@ author:
   email:             manbalboy@hanmail.net
 
 # Fallback image and color
-image:               /assets/img/main_left.JPG
-color:               '#4f86aa'
+image:               /assets/img/main_left.png
+color:               '#403c3c'
 
 # The font used for headings. Expects a string that is a valid CSS font-family value.
 font_heading:        "'Merriweather-Light','Lato','-apple-system','Verdana','PingFang SC','Helvetica Neue','Arial','Hiragino Sans GB','Microsoft YaHei','WenQuanYi Micro Hei','sans-serif'"
@@ -132,3 +132,11 @@ sass:
   style:             compressed
 
 
+tipue_search:
+     include:
+         pages: false
+         collections: []
+     exclude:
+         files: [search.html, index.html, tags.html]
+         categories: []
+         tags: []
