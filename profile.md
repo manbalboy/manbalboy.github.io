@@ -1,3 +1,4 @@
+<!-- bundle exec jekyll serve -->
 ---
 title: Profile
 layout: about
