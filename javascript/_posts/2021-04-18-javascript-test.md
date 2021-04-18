@@ -1,5 +1,6 @@
 ---
 title: test
+comments: true
 ---
 
 # 자바스크립트 테스트 포스트
