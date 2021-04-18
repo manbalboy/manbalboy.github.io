@@ -1,12 +1,8 @@
-<!-- bundle exec jekyll serve -->
 ---
 title: Profile
 layout: about
-menu: true
-order: 2
 ---
 
-* * *
 <center>
 <span style=
 "font-size:170%;
