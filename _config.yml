@@ -20,7 +20,7 @@ url:                   https://manbalboy.github.io
 lang:                  en
 
 # The title of your blog. Used in the sidebar and the browser tab.
-title:                 MANBALBOY의 블로그
+title:                 MANBALBOY BLOG
 
 # A short description (~150 chars) of the page used for the meta description tag.
 # Can use markdown, but no more than one paragraph (enforced by `>`)
@@ -49,32 +49,12 @@ author:
 
 # Add links to the sidebar.
 menu:
-  - title:             About
-    url:               /about/
   - title:             Profile
     url:               /profile/
-  - title:             Study
-    url:               /study/
-  - title:             Blog
-    url:               /blog/
-    submenu:
-      - title:  GithubPages
-        url:      /githubpages/
-      - title:  Library
-        url:      /library/
-      - title:  ML/DL
-        url:      /mldl/
-      - title:  Class
-        url:      /class/
-      - title:  blog-etc
-        url:      /blog-etc/
-  - title:             Etc
-    url:               /etc/
-    submenu:
-      - title:  Diary
-        url:      /diary/
-      - title:  Travel
-        url:      /travel/
+  - title:             JAVA
+    url:               /blog/java/
+  - title:             JAVASCRIPT
+    url:               /blog/javascript/
 
 
 # Add links to the footer.
