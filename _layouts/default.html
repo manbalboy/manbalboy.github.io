@@ -19,6 +19,7 @@ layout: base
 
 {% assign strings = site.data.strings %}
 
+{% include analytics.html %}
 <article class="page" role="article">
   <header>
     <h1 class="page-title">{{ page.title | default:strings.home | default:"Home" }}</h1>
