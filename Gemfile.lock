@@ -296,6 +296,7 @@ DEPENDENCIES
   jekyll-admin
   jekyll-compose
   jekyll-include-cache
+  jekyll-sitemap
   tzinfo-data
   wdm
 
