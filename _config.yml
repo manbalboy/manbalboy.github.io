@@ -50,6 +50,8 @@ author:
 menu:
   - title:             Profile
     url:               /profile/
+  - title:             HTML/CSS
+    url:               /blog/html/
   - title:             JAVA
     url:               /blog/java/
   - title:             JAVASCRIPT
