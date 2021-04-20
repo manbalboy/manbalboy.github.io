@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: http://manbalboy.github.io/sitemap.xml
+Sitemap: https://manbalboy.github.io/sitemap.xml
