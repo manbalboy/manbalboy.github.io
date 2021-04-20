@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Thank You!
-sitemap: false
+sitemap: true
 ---
 
 <center>
