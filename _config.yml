@@ -56,6 +56,14 @@ menu:
     url:               /blog/java/
   - title:             JAVASCRIPT
     url:               /blog/javascript/
+  - title:             UI Framework
+    url:               /blog/UIFramework/
+  - title:             Node.js
+    url:               /blog/node/
+  - title:             etc
+    url:               /blog/etc/
+  # - title:             Projects
+  #   url:               /projects/
 
 
 # Add links to the footer.
