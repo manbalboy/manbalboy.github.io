@@ -8,7 +8,7 @@ description: >
 sitemap: true
 ---
 
-# JS의 삽입 방식과 삽입 위치
+# [JS] JS의 삽입 방식과 삽입 위치
 
 * toc
 {:toc}
