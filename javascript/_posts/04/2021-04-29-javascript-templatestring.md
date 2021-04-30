@@ -1,5 +1,5 @@
 ---
-title: [JS]
+title: Template literals
 comments: true
 image: 
    path: /assets/img/blog/javascript/js.gif
@@ -8,7 +8,7 @@ description: >
 sitemap: true
 ---
 
-# [JS] emplate literals (템플릿 문자열)
+# [JS] Template literals (템플릿 문자열)
 
 * toc
 {:toc}
