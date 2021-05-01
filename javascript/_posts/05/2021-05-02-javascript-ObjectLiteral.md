@@ -201,7 +201,7 @@ ES6 방식의 메서드는 super키워드 참조가 가능하지만,
 ## 3.정리 
 향상된 객체 리터럴에 대해서 살펴보았는데요 타이핑을 줄여 코딩 가독성과 생산성을 높일 수 있는 문법 입니다 이는 Vue, React 에서도 자주 사용되고 많은 부분에서 사용되기 때문에 정확한 사용법을 익히고 사용하시는 것을 추천드립니다.
 
-## 7.참고
+## 4.참고
 
 - [curryyou.tistory.com](https://curryyou.tistory.com/191)
 - [joshua1988.github.io](https://joshua1988.github.io/es6-online-book/enhanced-object-literals.html#%EA%B8%B0%EC%A1%B4-%EA%B0%9D%EC%B2%B4-%EC%A0%95%EC%9D%98-%EB%B0%A9%EC%8B%9D)
