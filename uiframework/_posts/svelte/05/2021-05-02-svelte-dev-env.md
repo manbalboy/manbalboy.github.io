@@ -11,7 +11,7 @@ related_posts:
     - uiframework/_posts/svelte/04/2021-04-24-svelte01.md
 ---
 
-# Svelte Vscode 환경 셋팅
+# [Svelte] Svelte Vscode 환경 셋팅
 
 * toc
 {:toc}
