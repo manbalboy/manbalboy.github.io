@@ -8,7 +8,7 @@ description: >
     Svelte를 학습하기에 Vscode 에 스벨트를 실습할수 있는 환경을 만들자
 sitemap: true
 related_posts:
-  - uiframework/_posts/svlte/04/2021-04-24-svelte01.md
+    - uiframework/_posts/svelte/04/2021-04-24-svelte01.md
 ---
 
 # Svelte Vscode 환경 셋팅
