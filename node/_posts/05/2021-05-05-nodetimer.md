@@ -85,7 +85,7 @@ const immediate = setImmediate(() => {
 node의 타이머를 학습하였습니다. 모든 타이머함수는 id 를 반환하며 clear가 붙은 함수로 취소가 가능합니다. 
 비동기 처리시 빈번하게 사용되는 함수로 학습을 하시면 여러 방면에서 활용도가 높습니다. 
 
-## 5.참고자료
+## 6.참고자료
 [nodejs.org](https://nodejs.org/api/timers.html)
 
 
