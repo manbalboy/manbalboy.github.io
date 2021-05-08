@@ -1,7 +1,10 @@
 ---
 layout: list
-title:  etc
-slug:   etc
+type: category
+title: Etc.
+slug: etc
+sidebar: true
+order: 4
 description: >
-  카테고리 외 etc 정보를 공유합니다.
+  IT 정보 외 자료 
 ---

@@ -1,3 +1,5 @@
+{% assign provider = site.comments.provider | default:"disqus" %}
+{% if provider == "disqus" %}
 {% assign disqus = site.disqus | default:site.disqus_shortname %}
 {% if disqus %}
 <div id="disqus_thread"></div>
@@ -22,3 +24,18 @@
   }
 }(window, document);</script>
 {% endif %}
+
+{% elsif provider == "utterances" %}
+  {% assign utterances = site.utterances %}
+  {% if utterances.repo %}
+  <script src="https://utteranc.es/client.js"
+  repo="manbalboy/manbalboy-blog-comments-repo"
+  issue-term="pathname"
+  theme="github-light"
+  crossorigin="anonymous"
+  async>
+  </script>
+  {% endif %}
+{% endif %}
+
+

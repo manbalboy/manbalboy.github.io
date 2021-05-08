@@ -17,7 +17,7 @@ url:                   https://manbalboy.github.io
 
 # Language of your content in 2-letter code, e.g.: en, de.
 # You may also provide a location, e.g.: en-us, de_AT.
-lang:                  en
+lang:                   ko-KR, en-US
 
 # The title of your blog. Used in the sidebar and the browser tab.
 title:                 MANBALBOY BLOG
@@ -47,45 +47,48 @@ author:
   # twitter:             <username>
 
 # Add links to the sidebar.
-menu:
-  - title:             Profile
-    url:               /profile/
-  - title:             HTML/CSS
-    url:               /blog/html/
-  - title:             JAVA
-    url:               /blog/java/
-  - title:             JAVASCRIPT
-    url:               /blog/javascript/
-  - title:             UI Framework
-    url:               /blog/uiframework/
-  - title:             Node.js
-    url:               /blog/node/
-  - title:             etc
-    url:               /blog/etc/
+# menu:
+#   - title:             Profile
+#     url:               /profile/
+#   - title:             HTML/CSS
+#     url:               /blog/html/
+#   - title:             JAVA
+#     url:               /blog/java/
+#   - title:             JAVASCRIPT
+#     url:               /blog/javascript/
+#   - title:             UI Framework
+#     url:               /blog/uiframework/
+#   - title:             Node.js
+#     url:               /blog/node/
+#   - title:             etc
+#     url:               /blog/etc/
   # - title:             Projects
   #   url:               /projects/
 
 
 # Add links to the footer.
 # Typically you'll want to link to your cookie- or privacy policy (if appliable), etc..
-legal:
-  - title:             LICENSE
-    url:               /LICENSE/
-  - title:             NOTICE
-    url:               /NOTICE/
-  - title:             CHANGELOG
-    url:               /CHANGELOG/
+# legal:
+#   - title:             LICENSE
+#     url:               /LICENSE/
+#   - title:             NOTICE
+#     url:               /NOTICE/
+#   - title:             CHANGELOG
+#     url:               /CHANGELOG/
 
 # This text will appear in a `<small>` tag in the footer of every page.
 copyright:             © 2021. All rights reserved.
 
 # Format of the permalinks
-permalink:             /blog/:categories/:year-:month-:day-:title/
+# permalink:             /blog/:categories/:year-:month-:day-:title/
+permalink:             none
 
 # Pagination configuration (used by the `blog` layout)
+# paginate:              10
+# paginate_path:         /blog/:num/
 paginate:              10
-paginate_path:         /blog/:num/
-
+paginate_path:         /page-:num/
+excerpt_separator:     <!--more-->
 
 # Theme
 # ---------------------------------------------------------------------------------------
@@ -147,11 +150,12 @@ defaults:
       sitemap:         false
 
   # # You can use the following to enable comments on all posts.
-  # - scope:
-  #     type:            posts
-  #   values:
-  #     comments:        true
-
+  - scope:
+      type:            posts
+    values:
+      comments:        true
+      # https://applause-button.com/
+      applause_button:       true
   # `jekyll-seo-tag` will mark collection outputs as `BlogPosting`,
   # but we want them to be `WebPage`s:
   - scope:
@@ -191,6 +195,24 @@ google_analytics:      G-DMT2JN1SDY
 # PRO version only!
 # tinyletter:            <username>
 
+# Set which comment system to use
+comments:
+  # 'disqus' or 'utterances' are available
+  provider:            utterances
+
+# Setting a disqus shortname will enable the comment section on
+# pages with `comments: true` in the front matter.
+disqus:                manbalboygithub
+
+# You must install utterances github app before use.(https://github.com/apps/utterances)
+# Make sure all variables are set properly. Check below link for detail.
+# https://utteranc.es/
+utterances:
+  repo:                "manbalboy/manbalboy-blog-comments-repo"
+  issue-term:          "pathname"
+  label:               "Comments"
+  theme:               "dark-blue"
+
 
 # Hydejack Settings
 # ----------------------------------------------------------------------------------------
@@ -198,13 +220,13 @@ google_analytics:      G-DMT2JN1SDY
 
 hydejack:
   # Configure the order of complementary content on blog posts
-  post_addons:         [about, newsletter, related, random, comments]
+  post_addons:         [about,  related, random, comments]
 
   # Configure the order of complementary content on project pages
-  project_addons:      [about, newsletter, other, comments]
+  project_addons:      [about,  other, comments]
 
   # Set to `true` if you don't want to show an icon indicating external links
-  no_mark_external:    false
+  no_mark_external:    true
 
   # Set to `true` if third party plugins fail to work with dynamically loaded pages
   no_push_state:       false
@@ -228,7 +250,7 @@ hydejack:
 
   # Set to `true` if you don't intend on changing the accent color on a per-page basis. 
   # This will increase site build speed!
-  no_page_style:       false
+  no_page_style:       true
 
   # Code blocks and tables "break" the layout by spanning the full available width.
   # Set this to true if you want them to be the same width as other content.
@@ -261,7 +283,7 @@ hydejack:
 
   # When using Google Analytics, set to `true` to display a cookie notice banner.
   # When enabled, no user-related data will be stored until the user gives consent.
-  cookies_banner:      false
+  cookies_banner:      true
 
   # Set to `true` if you would like to add a "Powered by Hydejack" link in the footer.
   # Note that this setting has no effect when using the free version.
@@ -302,7 +324,7 @@ hydejack:
 
 collections:
   featured_categories:
-    permalink:         /blog/:name/
+    permalink:         /:name/
     output:            true
 
   featured_tags:
@@ -436,11 +458,8 @@ jekyll_compose:
         - title: Project Link
           url: https://example.com
           
-tipue_search:
-     include:
-         pages: false
-         collections: []
-     exclude:
-         files: [search.html, index.html, tags.html]
-         categories: []
-         tags: []
+# jekyll-feed settings
+feed:
+  categories:
+    - javascript
+    - front
