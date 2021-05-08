@@ -2,49 +2,49 @@
 # If you don't have a JSON Resume you can just edit this YAML file instead.
 # See also: <https://jsonresume.org/>.
 basics:
-  name: "Richard Hendricks"
-  label: "Programmer"
-  picture: "https://placehold.it/240x240"
-  email: ""
-  phone: "(912) 555-4321"
-  website: "https://piedpiper.com"
+  name: "정훈 (Hun Jung)"
+  label: "Web Programmer"
+  picture: /assets/img/logo.jpg
+  email: "manbalboy@hanmail.net"
+  phone: "010-4816-0217"
+  website: "https://manbalboy.github.io/"
   summary: >
-    Richard hails from Tulsa.
-    He has earned degrees from the University of Oklahoma and Stanford. (Go Sooners and Cardinals!)
-    Before starting Pied Piper, he worked for Hooli as a part time software developer.
-    While his work focuses on applied information theory,
-    mostly optimizing lossless compression schema of both the length-limited and adaptive variants,
-    his non-work interests range widely,
-    everything from quantum computing to chaos theory.
-    He could tell you about it, but THAT would NOT be a “length-limited” conversation!
-    Open `_data/resume.yml` to edit this text.
+    개발 5년차 웹 프로그래머.
+    클린코더에 나온 말처럼, 창의적인 출력은 창의적인 입력에서 나온다고 생각합니다.
+    색다르고 다양한 것들을 해보고 있습니다.
   location:
-    address: "2712 Broadway St"
-    postalCode: "CA 94115"
-    city: "San Francisco"
-    countryCode: "US"
-    region: "California"
+    address: "7, Gwanak-ro 25-gil"
+    postalCode: "08744"
+    city: "Seoul"
+    countryCode: "KR"
+    region: "Gwanak-gu"
   profiles:
-    - network: "Twitter"
-      username: "RHendricksCEO"
-      url: ""
-    - network: "LinkedIn"
-      username: "Richard Hendricks"
-      url: ""
+    - network: "GitHub"
+      username: "manbalboy"
+      url: "https://github.com/manbalboy"
+    - network: "Instagram"
+      username: "junghunihun"
+      url: "https://www.instagram.com/junghunihun/"
 work:
-  - company: "Pied Piper"
-    position: "CEO/President"
-    website: "https://piedpiper.com"
-    startDate: "2013-12-01"
-    endDate: ""
+  - company: "대명라이프웨이 CRM 시스템 구축 (xPlatform)"
+    position: "Web Developer"
+    website: ""
+    startDate: "2015.12.08"
+    endDate: "2016.08.22"
     summary: >
-      Pied Piper is a multi-platform technology based on a proprietary universal compression algorithm that has
-      consistently fielded high Weisman Scores™ that are not merely competitive,
-      but approach the theoretical limit of lossless compression.
+      대명라이프웨이 사내 시스템 고도화 프로젝트, 아웃바운드 업무담당자로 미납조회 배치 개발, 
+      자동 문자발송 배치 개발, 아웃바운드 메인 개발, 관리업무 개발 
     highlights:
-      - "Built an algorithm for artist to detect if their music was violating copy right infringement laws"
-      - "Successfully won Techcrunch Disrupt"
-      - "Optimized an algorithm that holds the current world record for Weisman Scores"
+      - "xPlatform, Oracle, eGovFrame"
+  - company: "아모레퍼시픽 Front Desk 시스템 기능 개발 프로젝트"
+    position: "Web Developer"
+    website: ""
+    startDate: "2016.11.03"
+    endDate: "2017.01.16"
+    summary: >
+      국내기능개선, 메일 템플릿 기능 개발, 메일 문자 코드 기능 개발 
+    highlights:
+      - "Spring, Oracle, JSP"
 volunteer:
   - organization: "CoderDojo"
     position: "Teacher"
