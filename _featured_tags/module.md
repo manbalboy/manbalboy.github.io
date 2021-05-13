@@ -2,7 +2,7 @@
 layout: tag-list
 type: tag
 title: JS 라이브러리
-slug: lib
+slug: module
 category: javascript
 sidebar: true
 order: 3
