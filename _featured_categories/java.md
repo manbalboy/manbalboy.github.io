@@ -1,10 +1,10 @@
 ---
 layout: list
 type: category
-title: Etc.
-slug: etc
+title: Java.
+slug: java
 sidebar: true
-order: 5
+order: 4
 description: >
-  IT 정보 외 자료 
+    Java 관련
 ---
