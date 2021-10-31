@@ -40,7 +40,7 @@ sitemap: true
 - 브라우저가 동작하는 데 필요한 기반 기술을 모두 포함하는 엔진
 - 브라우저 엔진에 따라서 동작 방식이 거의 유사하다.
 
-### 브라우저 엔진의 종류
+### 브라우저 엔진의 종류:
 - Blink Engine (Chrome, Opera, Samsung Internet, MS Edge, Whale, Brave)
 - WebKit Engine (Safari)
 - Servo Engine (Firefox), Gecko Engine (Firefox)
