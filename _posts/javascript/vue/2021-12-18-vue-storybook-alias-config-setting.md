@@ -5,7 +5,7 @@ comments: true
 category: javascript
 tags: vue
 image:
-path: /assets/img/blog/vue/vue-logo.png
+  path: /assets/img/blog/vue/vue-logo.png
 description: >
   Vue 를 개발하다보면 import 시 ~ 나 @ 와 같이경로를 alias 를 주어 import 하였을 것이다. 그렇다면 storybook 에서는 alias 를 어떻게 설정할 수 있는지 같이 알아보자.
 sitemap: true
