@@ -92,3 +92,13 @@ docker image ls
 docker image ls -q
 ```
 
+## docker rmi
+pull 받은 도커 이미지를 삭제하는 명령어는 다음과 같습니다. 
+
+```shell
+docker rmi 이미지ID
+
+docker image rm 이미지 ID
+```
+
+
