@@ -21,7 +21,7 @@ sitemap: true
 docker system df
 ```
 
-!["img6"](/assets/img/blog/it/devops/2022-01-23/img6.PNG)
+!["img6"](/assets/img/blog/it/devops/2022-01-23/img6.png)
 
 <!--more-->
 
@@ -34,7 +34,7 @@ docker system df
 docker container stats
 ```
 
-!["img5"](/assets/img/blog/it/devops/2022-01-23/img5.PNG)
+!["img5"](/assets/img/blog/it/devops/2022-01-23/img5.png)
 
 ## 3. 실행중인 컨테이너에 명령 실행 방법
 ```shell
