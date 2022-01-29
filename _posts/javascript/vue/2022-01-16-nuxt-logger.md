@@ -37,8 +37,18 @@ log는 Console 표준출력 표준에러 형태로 터미널에 보여지는 것
 
 이를 사용하기 쉽게 개발해 놓은 모듈로 유명한 것이 winston 이라는 모듈이 있다. 이를 래핑 하여 
 
-필자는 `nuxt-logger-winston` 이라는 모듈을 개발하여 npm publish 하였다. 
-
-https://www.npmjs.com/package/nuxt-logger-winston
+필자는 [`nuxt-logger-winston`](https://www.npmjs.com/package/nuxt-logger-winston) 이라는 모듈을 개발하여 npm publish 하였다.
 
 해당 모듈은 nuxt.hook 에 여러가지 로그들을 설정하여 Console 또는 File 로 남길 수 있도록 래핑하였다.
+
+해당 모듈 저장소 URL 은 다음과 같으며  
+
+[git 저장소 URL](https://github.com/manbalboy/nuxt-logger-winston)
+
+README.md 파일과 examples 를 활용하여 자신의 로직에 맞게 수정하거나 
+
+```shell
+npm i nuxt-logger-winston
+```
+
+을 입력하여 설치하고 `nuxt.config.js` 파일에 setting 하여 사용 하면 된다.
