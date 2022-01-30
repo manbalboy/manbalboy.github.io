@@ -80,12 +80,24 @@ RUN /bin/bash -c 'source $HOME/.bashrc; echo $HOME'
 RUN ["/bin/bash", "-c", "echo hello"]
 ```
 
+### CMD
+CMD 의 주요 목적은 실행 컨테이너에 대한 기본값을 제공하는 것. 
+여러개의 CMD 를 한파일에 작성하면 마지막 항목만 CMD에 적용됩니다. 
+
+```shell
+CMD ["executable","param1","param2"]( exec 형식, 선호하는 형식)
+CMD ["param1","param2"]( ENTRYPOINT에 대한 기본 매개변수로 )
+CMD command param1 param2( 쉘 형태)
+```
+
+
 ### ENTRYPOINT 
 CMD 와 비슷하지만 `docker run` 수행 시  해당 command 가 유지 되어 사용되어야 할 때 사용 됩니다. 
 
 ```shell
 ENTRYPOINT ["executable", "param1", "param2"] or ENTRYPOINT command param1 param2
 ```
+
 
 ## Dockerfile 실행법
 ```shell
