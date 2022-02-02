@@ -82,14 +82,13 @@ RUN ["/bin/bash", "-c", "echo hello"]
 
 ### CMD
 CMD 의 주요 목적은 실행 컨테이너에 대한 기본값을 제공하는 것. 
-여러개의 CMD 를 한파일에 작성하면 마지막 항목만 CMD에 적용됩니다. 
+여러개의 CMD 를 한파일에 작성하면 마지막 항목만 CMD 에 적용됩니다. 
 
 ```shell
 CMD ["executable","param1","param2"]( exec 형식, 선호하는 형식)
 CMD ["param1","param2"]( ENTRYPOINT에 대한 기본 매개변수로 )
 CMD command param1 param2( 쉘 형태)
 ```
-
 
 ### ENTRYPOINT 
 CMD 와 비슷하지만 `docker run` 수행 시  해당 command 가 유지 되어 사용되어야 할 때 사용 됩니다. 
@@ -98,6 +97,27 @@ CMD 와 비슷하지만 `docker run` 수행 시  해당 command 가 유지 되�
 ENTRYPOINT ["executable", "param1", "param2"] or ENTRYPOINT command param1 param2
 ```
 
+### COPY
+COPY 명령은 에서 새 파일이나 디렉토리를 복사 <src> 하여 경로에 있는 컨테이너의 파일 시스템에 추가합니다.
+
+>--chown 기능은 Linux 컨테이너를 빌드하는 데 사용되는 Dockerfile 에서만 지원되며 Windows 컨테이너에서는 작동하지 않습니다. 사용자 및 그룹 소유권 개념은 Linux 와 Windows 간에 변환되지 않으므로 사용자 및 그룹 이름을 ID로 변환하는 데 /etc/passwd 및 /etc/group 를 사용하면 이 기능이 Linux OS 기반 컨테이너에서만 실행 가능하도록 제한됩니다.
+```shell
+COPY [--chown=<user>:<group>] <src>... <dest>
+COPY [--chown=<user>:<group>] ["<src>",... "<dest>"]
+
+COPY test.txt /absoluteDir/
+```
+### EXPOSE
+EXPOSE 명령은 컨테이너가 런타임에 지정된 네트워크 포트에서 수신 대기함을 Docker 에 알립니다. 포트가 TCP 또는 UDP 에서 수신 대기하는지 여부를 지정할 수 있으며 프로토콜이 지정되지 않은 경우 기본값은 TCP 입니다.
+
+```shell
+EXPOSE <port> [<port>/<protocol>...]
+
+EXPOSE 80/udp
+
+# 사용
+docker run -p 80:80/tcp -p 80:80/udp ...
+```
 
 ## Dockerfile 실행법
 ```shell
