@@ -1,54 +1,67 @@
 ---
 layout: post
-title:  "[Nuxt] SSR LOGGER"
+title:  "[Nuxt] VSCODE DEBUG 하기"
 comments: true
 category: javascript
 tags: vue
 image:
   path: /assets/img/blog/vue/vue-logo.png
 description: >
-  운영시 Generate 방식이 아닌 SSR 방식으로 Nuxt 를 구동시 운영 LOG 에 대하여 학습해보자.
+  VSCODE 에서 NUXT DEBUG 하기 
 sitemap: true
 ---
 
-# [Nuxt] SSR LOGGER
+# [Nuxt] VSCODE 에서 NUXT DEBUG 하기
 
 ## 개요
-운영시 SSR 방식으로 Nuxt 를 구동시 운영 LOG 에 대하여 학습해보자.
+nuxt 개발시 VSCODE 에서 DEBUG 하는 방법에 대해 학습해 보자 
 
 <!--more-->
 * toc
 {:toc}
 
-운영상에서 LOGGING 은 아주 중요한 부분중 하나이다. 장애시 대응을 하기 위해서 적절한 LOG 를 쌓아야한다.  
-또한 이를 위해서 LOG FILE 의 ROTATE 주기를 주어야하며, LOG_LEVEL 또한 고려 대상이다. 
-
-무슨 DATA 를 남길 것인가, 어떠한 형태로 포멧을 남길 것인가도 핵심 사항 중에 한 부분이다.
-
-필자의 생각으로는 Nuxt 에서는 api 서버 역할을 대체하지 않는 이상. 다음의 로그 형태는 갖춰줘야 한다고 생각한다. 
-
-- access log
-- error log
-- message log (alert, info, debug)
-- axios log(api log)
+NUXT를 개발을 함에 있어 NODE(Server) 와 Client(Browser) 둘다 Debugging 을 해야하며 이에 대해 설명한다. 
 
 ## 방법
-log는 Console 표준출력 표준에러 형태로 터미널에 보여지는 것과 보관을 하기위해 파일로 증적을 남겨야한다. 
+.vscode 폴더에 launch.json 파일에 다음 소스를 붙여 넣는다. 
 
-이를 사용하기 쉽게 개발해 놓은 모듈로 유명한 것이 winston 이라는 모듈이 있다. 이를 래핑 하여 
-
-필자는 [`nuxt-logger-winston`](https://www.npmjs.com/package/nuxt-logger-winston) 이라는 모듈을 개발하여 npm publish 하였다.
-
-해당 모듈은 nuxt.hook 에 여러가지 로그들을 설정하여 Console 또는 File 로 남길 수 있도록 래핑하였다.
-
-해당 모듈 저장소 URL 은 다음과 같으며  
-
-[git 저장소 URL](https://github.com/manbalboy/nuxt-logger-winston)
-
-README.md 파일과 examples 를 활용하여 자신의 로직에 맞게 수정하거나 
-
-```shell
-npm i nuxt-logger-winston
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "chrome",
+        "request": "launch",
+        "name": "client: chrome",
+        "url": "http://localhost:3000",
+        "webRoot": "${workspaceFolder}"
+      },
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "server: nuxt",
+        "args": ["dev"],
+        "osx": {
+          "program": "${workspaceFolder}/node_modules/.bin/nuxt"
+        },
+        "linux": {
+          "program": "${workspaceFolder}/node_modules/.bin/nuxt"
+        },
+        "windows": {
+          "program": "${workspaceFolder}/node_modules/nuxt/bin/nuxt.js"
+        }
+      }
+    ],
+    "compounds": [
+      {
+        "name": "fullstack: nuxt",
+        "configurations": ["server: nuxt", "client: chrome"]
+      }
+    ]
+}
 ```
 
-을 입력하여 설치하고 `nuxt.config.js` 파일에 setting 하여 사용 하면 된다.
+![debug](/assets/img/blog/vue/2021/07/png1.PNG  "debug"){:.border}
+
+
+디버그 탭에 가서 디버깅을 시작한다. 
