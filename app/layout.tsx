@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "Hun Jung | Developer Blog",
+  title: "Hun Jung | Tech Blog",
   description: "Frontend & Backend 개발자 Hun Jung의 기술 블로그",
 }
 
