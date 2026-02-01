@@ -3,9 +3,6 @@
 import { useEffect, useState } from "react"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
-import rehypeHighlight from "rehype-highlight"
-import rehypeSlug from "rehype-slug"
-import Image from "next/image"
 import Link from "next/link"
 
 interface MDXContentProps {
@@ -29,32 +26,57 @@ export function MDXContent({ content }: MDXContentProps) {
     )
   }
 
+  // Generate slug from text
+  const generateSlug = (text: string): string => {
+    return text
+      .toLowerCase()
+      .replace(/[^a-z0-9가-힣\s-]/g, "")
+      .replace(/\s+/g, "-")
+      .replace(/-+/g, "-")
+      .replace(/^-|-$/g, "")
+  }
+
   return (
     <div className="prose">
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
-        rehypePlugins={[rehypeHighlight, rehypeSlug]}
         components={{
-          h1: ({ children, id }) => (
-            <h1 id={id} className="scroll-mt-20">
-              {children}
-            </h1>
-          ),
-          h2: ({ children, id }) => (
-            <h2 id={id} className="scroll-mt-20">
-              {children}
-            </h2>
-          ),
-          h3: ({ children, id }) => (
-            <h3 id={id} className="scroll-mt-20">
-              {children}
-            </h3>
-          ),
-          h4: ({ children, id }) => (
-            <h4 id={id} className="scroll-mt-20">
-              {children}
-            </h4>
-          ),
+          h1: ({ children }) => {
+            const text = String(children)
+            const id = generateSlug(text)
+            return (
+              <h1 id={id} className="scroll-mt-20">
+                {children}
+              </h1>
+            )
+          },
+          h2: ({ children }) => {
+            const text = String(children)
+            const id = generateSlug(text)
+            return (
+              <h2 id={id} className="scroll-mt-20">
+                {children}
+              </h2>
+            )
+          },
+          h3: ({ children }) => {
+            const text = String(children)
+            const id = generateSlug(text)
+            return (
+              <h3 id={id} className="scroll-mt-20">
+                {children}
+              </h3>
+            )
+          },
+          h4: ({ children }) => {
+            const text = String(children)
+            const id = generateSlug(text)
+            return (
+              <h4 id={id} className="scroll-mt-20">
+                {children}
+              </h4>
+            )
+          },
           a: ({ href, children }) => {
             if (href?.startsWith("/")) {
               return (
@@ -77,17 +99,10 @@ export function MDXContent({ content }: MDXContentProps) {
           img: ({ src, alt }) => {
             if (!src) return null
             
-            // Handle relative paths
-            const imageSrc = src.startsWith("/assets") 
-              ? src 
-              : src.startsWith("http") 
-              ? src 
-              : `/assets/img${src}`
-            
             return (
               <span className="block my-4">
                 <img
-                  src={imageSrc}
+                  src={src}
                   alt={alt || ""}
                   className="rounded-lg border border-border max-w-full"
                   loading="lazy"
@@ -102,7 +117,7 @@ export function MDXContent({ content }: MDXContentProps) {
           },
           code: ({ className, children, ...props }) => {
             const match = /language-(\w+)/.exec(className || "")
-            const isInline = !match
+            const isInline = !match && !className
             
             if (isInline) {
               return (
@@ -113,13 +128,13 @@ export function MDXContent({ content }: MDXContentProps) {
             }
             
             return (
-              <code className={className} {...props}>
+              <code className={`${className || ""} block`} {...props}>
                 {children}
               </code>
             )
           },
           pre: ({ children }) => (
-            <pre className="bg-card rounded-lg p-4 overflow-x-auto my-4 border border-border">
+            <pre className="bg-card rounded-lg p-4 overflow-x-auto my-4 border border-border text-sm">
               {children}
             </pre>
           ),

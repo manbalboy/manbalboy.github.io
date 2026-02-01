@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-import { useRouter } from "next/navigation"
 import { Search } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
@@ -12,25 +11,38 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
-import { getAllPosts } from "@/lib/posts"
-import type { Post } from "@/lib/posts"
-import Fuse from "fuse.js"
 import Link from "next/link"
+
+interface SearchPost {
+  slug: string
+  title: string
+  description: string
+  category: string
+  tags: string[]
+}
 
 export function SearchDialog() {
   const [open, setOpen] = React.useState(false)
   const [query, setQuery] = React.useState("")
-  const [posts, setPosts] = React.useState<Post[]>([])
-  const [results, setResults] = React.useState<Post[]>([])
-  const router = useRouter()
+  const [posts, setPosts] = React.useState<SearchPost[]>([])
+  const [results, setResults] = React.useState<SearchPost[]>([])
 
   React.useEffect(() => {
     async function loadPosts() {
-      const allPosts = await getAllPosts()
-      setPosts(allPosts)
+      try {
+        const res = await fetch("/api/search")
+        if (res.ok) {
+          const data = await res.json()
+          setPosts(data)
+        }
+      } catch (error) {
+        console.error("Failed to load posts for search:", error)
+      }
     }
-    loadPosts()
-  }, [])
+    if (open && posts.length === 0) {
+      loadPosts()
+    }
+  }, [open, posts.length])
 
   React.useEffect(() => {
     if (!query.trim()) {
@@ -38,14 +50,15 @@ export function SearchDialog() {
       return
     }
 
-    const fuse = new Fuse(posts, {
-      keys: ["title", "description", "category", "tags"],
-      threshold: 0.3,
-      includeScore: true,
-    })
-
-    const searchResults = fuse.search(query).slice(0, 8)
-    setResults(searchResults.map((r) => r.item))
+    const lowerQuery = query.toLowerCase()
+    const filtered = posts.filter(
+      (post) =>
+        post.title.toLowerCase().includes(lowerQuery) ||
+        post.description.toLowerCase().includes(lowerQuery) ||
+        post.category.toLowerCase().includes(lowerQuery) ||
+        post.tags.some((tag) => tag.toLowerCase().includes(lowerQuery))
+    )
+    setResults(filtered.slice(0, 8))
   }, [query, posts])
 
   React.useEffect(() => {
