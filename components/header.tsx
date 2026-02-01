@@ -24,7 +24,6 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60">
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground font-bold text-sm">
               HJ
@@ -32,7 +31,6 @@ export function Header() {
             <span className="font-semibold text-lg hidden sm:block">Hun Jung</span>
           </Link>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex md:items-center md:gap-1">
             {navigation.map((item) => (
               <Link
@@ -50,12 +48,10 @@ export function Header() {
             ))}
           </div>
 
-          {/* Actions */}
           <div className="flex items-center gap-2">
             <SearchDialog />
             <ThemeToggle />
             
-            {/* Mobile menu button */}
             <Button
               variant="ghost"
               size="icon"
@@ -67,7 +63,6 @@ export function Header() {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
         {mobileMenuOpen && (
           <div className="md:hidden py-4 border-t border-border">
             <div className="flex flex-col gap-1">

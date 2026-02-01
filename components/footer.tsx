@@ -6,7 +6,6 @@ export function Footer() {
     <footer className="border-t border-border bg-card/50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-          {/* Brand */}
           <div className="flex flex-col items-center md:items-start gap-2">
             <Link href="/" className="flex items-center gap-2">
               <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground font-bold text-sm">
@@ -19,7 +18,6 @@ export function Footer() {
             </p>
           </div>
 
-          {/* Links */}
           <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
             <Link href="/blog" className="hover:text-foreground transition-colors">
               Blog
@@ -35,7 +33,6 @@ export function Footer() {
             </Link>
           </div>
 
-          {/* Social */}
           <div className="flex items-center gap-4">
             <a
               href="https://github.com/manbalboy"

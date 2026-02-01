@@ -15,7 +15,6 @@ export function PostCard({ post, featured = false }: PostCardProps) {
         featured ? "md:flex-row" : ""
       }`}
     >
-      {/* Image */}
       {post.image && (
         <div
           className={`relative overflow-hidden bg-muted ${
@@ -32,9 +31,7 @@ export function PostCard({ post, featured = false }: PostCardProps) {
         </div>
       )}
 
-      {/* Content */}
       <div className={`flex flex-col flex-1 p-5 ${featured ? "md:p-6" : ""}`}>
-        {/* Meta */}
         <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground mb-3">
           <span className="flex items-center gap-1">
             <Calendar className="h-3 w-3" />
@@ -49,7 +46,6 @@ export function PostCard({ post, featured = false }: PostCardProps) {
           </Link>
         </div>
 
-        {/* Title */}
         <h3
           className={`font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-2 mb-2 ${
             featured ? "text-xl md:text-2xl" : "text-lg"
@@ -60,7 +56,6 @@ export function PostCard({ post, featured = false }: PostCardProps) {
           </Link>
         </h3>
 
-        {/* Description */}
         {post.description && (
           <p
             className={`text-muted-foreground line-clamp-2 mb-4 ${
@@ -71,7 +66,6 @@ export function PostCard({ post, featured = false }: PostCardProps) {
           </p>
         )}
 
-        {/* Tags */}
         {post.tags.length > 0 && (
           <div className="flex flex-wrap gap-2 mt-auto pt-3 border-t border-border/50">
             {post.tags.slice(0, 3).map((tag) => (
