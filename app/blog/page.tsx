@@ -1,8 +1,9 @@
-import { getAllPosts, getAllCategories } from "@/lib/posts"
-import { PostCard } from "@/components/post-card"
+import { getAllPosts, getAllCategories, formatDate } from "@/lib/posts"
+import type { Post } from "@/lib/posts"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 import type { Metadata } from "next"
+import { Calendar, Folder, Tag } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -15,6 +16,66 @@ interface BlogPageProps {
 
 const POSTS_PER_PAGE = 12
 
+function PostCard({ post }: { post: Post }) {
+  return (
+    <article className="group relative flex flex-col bg-card rounded-xl border border-border overflow-hidden transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5">
+      {post.image && (
+        <div className="relative overflow-hidden bg-muted aspect-video">
+          <img
+            src={post.image}
+            alt={post.title}
+            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            loading="lazy"
+          />
+        </div>
+      )}
+
+      <div className="flex flex-col flex-1 p-5">
+        <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground mb-3">
+          <span className="flex items-center gap-1">
+            <Calendar className="h-3 w-3" />
+            {formatDate(post.date)}
+          </span>
+          <Link
+            href={`/categories/${post.category}`}
+            className="flex items-center gap-1 hover:text-primary transition-colors"
+          >
+            <Folder className="h-3 w-3" />
+            {post.category}
+          </Link>
+        </div>
+
+        <h3 className="font-semibold text-lg text-foreground group-hover:text-primary transition-colors line-clamp-2 mb-2">
+          <Link href={`/blog/${post.slug}`} className="after:absolute after:inset-0">
+            {post.title}
+          </Link>
+        </h3>
+
+        {post.description && (
+          <p className="text-sm text-muted-foreground line-clamp-2 mb-4">
+            {post.description}
+          </p>
+        )}
+
+        {post.tags.length > 0 && (
+          <div className="flex flex-wrap gap-2 mt-auto pt-3 border-t border-border/50">
+            {post.tags.slice(0, 3).map((tag) => (
+              <Link
+                key={tag}
+                href={`/tags/${tag}`}
+                className="relative z-10 inline-flex items-center gap-1 text-xs px-2 py-1 bg-muted rounded-md text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors"
+              >
+                <Tag className="h-3 w-3" />
+                {tag}
+              </Link>
+            ))}
+          </div>
+        )}
+      </div>
+    </article>
+  )
+}
+
 export default async function BlogPage({ searchParams }: BlogPageProps) {
   const params = await searchParams
   const currentCategory = params.category || "all"
@@ -23,12 +84,10 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
   const allPosts = await getAllPosts()
   const categories = await getAllCategories()
   
-  // Filter by category
   const filteredPosts = currentCategory === "all"
     ? allPosts
     : allPosts.filter((post) => post.category === currentCategory)
   
-  // Pagination
   const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE)
   const paginatedPosts = filteredPosts.slice(
     (currentPage - 1) * POSTS_PER_PAGE,
@@ -37,7 +96,6 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
 
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl md:text-4xl font-bold mb-2">Blog</h1>
         <p className="text-muted-foreground">
@@ -45,7 +103,6 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
         </p>
       </div>
 
-      {/* Category Filter */}
       <div className="flex flex-wrap gap-2 mb-8 pb-6 border-b border-border">
         <Link
           href="/blog"
@@ -74,7 +131,6 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
         ))}
       </div>
 
-      {/* Posts Grid */}
       {paginatedPosts.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {paginatedPosts.map((post) => (
@@ -87,7 +143,6 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
         </div>
       )}
 
-      {/* Pagination */}
       {totalPages > 1 && (
         <div className="flex justify-center items-center gap-2">
           {currentPage > 1 && (
