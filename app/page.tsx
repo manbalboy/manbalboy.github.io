@@ -1,168 +1,133 @@
 import Link from "next/link"
-import { getRecentPosts, getAllCategories, getAllTags, formatDate } from "@/lib/posts"
-import type { Post } from "@/lib/posts"
-import { Button } from "@/components/ui/button"
-import { ArrowRight, Folder, Tag, BookOpen, Github, Mail, Calendar } from "lucide-react"
 
-function PostCard({ post, featured = false }: { post: Post; featured?: boolean }) {
-  return (
-    <article
-      className={`group relative flex flex-col bg-card rounded-xl border border-border overflow-hidden transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 ${
-        featured ? "md:flex-row" : ""
-      }`}
-    >
-      {post.image && (
-        <div
-          className={`relative overflow-hidden bg-muted ${
-            featured ? "md:w-2/5 aspect-video md:aspect-auto" : "aspect-video"
-          }`}
-        >
-          <img
-            src={post.image}
-            alt={post.title}
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-            loading="lazy"
-          />
-        </div>
-      )}
+const samplePosts = [
+  {
+    slug: "javascript-arrowfn",
+    title: "ES6 Arrow Function(화살표 함수)",
+    description: "ES6 Arrow Function(화살표 함수)에 대해서 학습하고 알아보자.",
+    date: "2021-05-01",
+    category: "javascript",
+    tags: ["javascript", "es6"],
+  },
+  {
+    slug: "spring-swagger-ui",
+    title: "Spring Boot Swagger UI 설정",
+    description: "Spring Boot에서 Swagger UI를 설정하는 방법을 알아보자.",
+    date: "2021-09-27",
+    category: "java",
+    tags: ["spring", "java"],
+  },
+  {
+    slug: "vue-composition-api",
+    title: "Vue 3 Composition API 시작하기",
+    description: "Vue 3의 Composition API를 사용하여 더 나은 코드를 작성하는 방법",
+    date: "2021-08-15",
+    category: "front",
+    tags: ["vue", "javascript"],
+  },
+  {
+    slug: "docker-basics",
+    title: "Docker 기초 가이드",
+    description: "Docker의 기본 개념과 사용법을 알아보자.",
+    date: "2021-07-20",
+    category: "it",
+    tags: ["docker", "devops"],
+  },
+]
 
-      <div className={`flex flex-col flex-1 p-5 ${featured ? "md:p-6" : ""}`}>
-        <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground mb-3">
-          <span className="flex items-center gap-1">
-            <Calendar className="h-3 w-3" />
-            {formatDate(post.date)}
-          </span>
-          <Link
-            href={`/categories/${post.category}`}
-            className="flex items-center gap-1 hover:text-primary transition-colors"
-          >
-            <Folder className="h-3 w-3" />
-            {post.category}
-          </Link>
-        </div>
+const categories = [
+  { name: "javascript", count: 25 },
+  { name: "java", count: 18 },
+  { name: "front", count: 15 },
+  { name: "it", count: 12 },
+  { name: "etc", count: 8 },
+]
 
-        <h3
-          className={`font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-2 mb-2 ${
-            featured ? "text-xl md:text-2xl" : "text-lg"
-          }`}
-        >
-          <Link href={`/blog/${post.slug}`} className="after:absolute after:inset-0">
-            {post.title}
-          </Link>
-        </h3>
+const tags = [
+  "javascript", "vue", "react", "spring", "java", "docker", "css", "html", "node", "typescript"
+]
 
-        {post.description && (
-          <p className={`text-muted-foreground line-clamp-2 mb-4 ${featured ? "text-base" : "text-sm"}`}>
-            {post.description}
-          </p>
-        )}
-
-        {post.tags.length > 0 && (
-          <div className="flex flex-wrap gap-2 mt-auto pt-3 border-t border-border/50">
-            {post.tags.slice(0, 3).map((tag) => (
-              <Link
-                key={tag}
-                href={`/tags/${tag}`}
-                className="relative z-10 inline-flex items-center gap-1 text-xs px-2 py-1 bg-muted rounded-md text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors"
-              >
-                <Tag className="h-3 w-3" />
-                {tag}
-              </Link>
-            ))}
-          </div>
-        )}
-      </div>
-    </article>
-  )
+function formatDate(dateString: string) {
+  return new Date(dateString).toLocaleDateString("ko-KR", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  })
 }
 
-export default async function HomePage() {
-  const recentPosts = await getRecentPosts(6)
-  const categories = await getAllCategories()
-  const tags = await getAllTags()
-  const featuredPost = recentPosts[0]
-  const otherPosts = recentPosts.slice(1)
-
+export default function HomePage() {
   return (
-    <div className="min-h-screen">
+    <div className="container max-w-screen-2xl px-4 py-12 mx-auto">
       {/* Hero Section */}
-      <section className="relative overflow-hidden border-b border-border">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent" />
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-          <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-balance">
-              <span className="text-primary">Hun Jung</span>
-              <br />
-              <span className="text-foreground/80">Developer Blog</span>
-            </h1>
-            <p className="mt-6 text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl">
-              항상 부족함을 느끼고 배움을 구하는 개발자입니다. 
-              Frontend, Backend, DevOps 등 다양한 기술에 대한 학습 내용을 기록합니다.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Button asChild size="lg">
-                <Link href="/blog">
-                  <BookOpen className="mr-2 h-4 w-4" />
-                  Read Blog
-                </Link>
-              </Button>
-              <Button asChild variant="outline" size="lg">
-                <a href="https://github.com/manbalboy" target="_blank" rel="noopener noreferrer">
-                  <Github className="mr-2 h-4 w-4" />
-                  GitHub
-                </a>
-              </Button>
-            </div>
-          </div>
-        </div>
+      <section className="text-center mb-16">
+        <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-foreground to-foreground/60 bg-clip-text text-transparent">
+          Welcome to My Blog
+        </h1>
+        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          Frontend & Backend 개발에 대한 이야기를 공유합니다.
+          JavaScript, Java, Spring, Vue 등 다양한 기술 스택을 다룹니다.
+        </p>
       </section>
 
-      {/* Featured Post */}
-      {featuredPost && (
-        <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold">Featured Post</h2>
-          </div>
-          <PostCard post={featuredPost} featured />
-        </section>
-      )}
-
-      {/* Recent Posts */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold">Recent Posts</h2>
-          <Button asChild variant="ghost" size="sm">
-            <Link href="/blog">
-              View all
-              <ArrowRight className="ml-2 h-4 w-4" />
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {/* Recent Posts */}
+        <div className="lg:col-span-2 space-y-6">
+          <div className="flex items-center justify-between">
+            <h2 className="text-2xl font-bold">최근 포스트</h2>
+            <Link href="/blog" className="text-primary hover:underline text-sm">
+              모든 글 보기 →
             </Link>
-          </Button>
+          </div>
+          <div className="space-y-4">
+            {samplePosts.map((post) => (
+              <article
+                key={post.slug}
+                className="group relative rounded-lg border border-border/50 bg-card p-6 hover:border-primary/50 transition-colors"
+              >
+                <div className="flex items-center gap-2 text-xs text-muted-foreground mb-2">
+                  <span className="px-2 py-1 rounded-full bg-primary/10 text-primary font-medium">
+                    {post.category}
+                  </span>
+                  <span>{formatDate(post.date)}</span>
+                </div>
+                <Link href={`/blog/${post.slug}`}>
+                  <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
+                    {post.title}
+                  </h3>
+                </Link>
+                <p className="text-muted-foreground line-clamp-2 mb-3">
+                  {post.description}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {post.tags.map((tag) => (
+                    <Link
+                      key={tag}
+                      href={`/tags/${tag}`}
+                      className="text-xs px-2 py-1 rounded-md bg-muted hover:bg-muted/80 transition-colors"
+                    >
+                      #{tag}
+                    </Link>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {otherPosts.map((post) => (
-            <PostCard key={post.slug} post={post} />
-          ))}
-        </div>
-      </section>
 
-      {/* Categories & Tags */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* Sidebar */}
+        <aside className="space-y-8">
           {/* Categories */}
-          <div className="bg-card rounded-xl border border-border p-6">
-            <div className="flex items-center gap-2 mb-6">
-              <Folder className="h-5 w-5 text-primary" />
-              <h2 className="text-xl font-bold">Categories</h2>
-            </div>
-            <div className="grid grid-cols-2 gap-3">
+          <div className="rounded-lg border border-border/50 bg-card p-6">
+            <h3 className="text-lg font-semibold mb-4">카테고리</h3>
+            <div className="space-y-2">
               {categories.map((category) => (
                 <Link
-                  key={category.slug}
-                  href={`/categories/${category.slug}`}
-                  className="flex items-center justify-between p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors"
+                  key={category.name}
+                  href={`/categories/${category.name}`}
+                  className="flex items-center justify-between py-2 px-3 rounded-md hover:bg-muted transition-colors"
                 >
-                  <span className="font-medium">{category.title}</span>
-                  <span className="text-sm text-muted-foreground bg-background px-2 py-0.5 rounded">
+                  <span className="capitalize">{category.name}</span>
+                  <span className="text-xs text-muted-foreground bg-muted px-2 py-1 rounded-full">
                     {category.count}
                   </span>
                 </Link>
@@ -171,58 +136,37 @@ export default async function HomePage() {
           </div>
 
           {/* Tags */}
-          <div className="bg-card rounded-xl border border-border p-6">
-            <div className="flex items-center gap-2 mb-6">
-              <Tag className="h-5 w-5 text-primary" />
-              <h2 className="text-xl font-bold">Popular Tags</h2>
-            </div>
+          <div className="rounded-lg border border-border/50 bg-card p-6">
+            <h3 className="text-lg font-semibold mb-4">태그</h3>
             <div className="flex flex-wrap gap-2">
-              {tags.slice(0, 15).map((tag) => (
+              {tags.map((tag) => (
                 <Link
-                  key={tag.slug}
-                  href={`/tags/${tag.slug}`}
-                  className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-muted/50 hover:bg-primary/10 hover:text-primary transition-colors text-sm"
+                  key={tag}
+                  href={`/tags/${tag}`}
+                  className="text-sm px-3 py-1 rounded-full bg-muted hover:bg-primary/10 hover:text-primary transition-colors"
                 >
-                  #{tag.slug}
-                  <span className="text-xs text-muted-foreground">({tag.count})</span>
+                  #{tag}
                 </Link>
               ))}
             </div>
-            <Button asChild variant="link" size="sm" className="mt-4 p-0">
-              <Link href="/tags">
-                View all tags
-                <ArrowRight className="ml-1 h-3 w-3" />
-              </Link>
-            </Button>
           </div>
-        </div>
-      </section>
 
-      {/* Contact CTA */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-transparent rounded-2xl border border-border p-8 md:p-12">
-          <div className="max-w-2xl">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">Get in Touch</h2>
-            <p className="text-muted-foreground mb-6">
-              궁금한 점이나 협업 제안이 있으시면 언제든지 연락해 주세요.
+          {/* About */}
+          <div className="rounded-lg border border-border/50 bg-card p-6">
+            <h3 className="text-lg font-semibold mb-4">About</h3>
+            <p className="text-sm text-muted-foreground mb-4">
+              안녕하세요! Frontend & Backend 개발자 Hun Jung입니다.
+              다양한 기술에 대한 경험과 지식을 공유합니다.
             </p>
-            <div className="flex flex-wrap gap-4">
-              <Button asChild>
-                <a href="mailto:manbalboy@hanmail.net">
-                  <Mail className="mr-2 h-4 w-4" />
-                  Email Me
-                </a>
-              </Button>
-              <Button asChild variant="outline">
-                <Link href="/about">
-                  About Me
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
+            <Link
+              href="/about"
+              className="text-primary hover:underline text-sm"
+            >
+              더 알아보기 →
+            </Link>
           </div>
-        </div>
-      </section>
+        </aside>
+      </div>
     </div>
   )
 }
