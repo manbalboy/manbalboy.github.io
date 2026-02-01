@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Hun Jung | Developer Blog",
-  description: "Frontend & Backend 개발자 Hun Jung의 기술 블로그입니다",
+  description: "Frontend & Backend 개발자 Hun Jung의 기술 블로그",
 }
 
 export default function RootLayout({

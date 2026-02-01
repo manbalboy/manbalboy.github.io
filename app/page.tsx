@@ -1,6 +1,5 @@
 import Link from "next/link"
 
-// Sample blog posts data
 const samplePosts = [
   {
     slug: "javascript-arrowfn",
@@ -59,7 +58,6 @@ function formatDate(dateString: string) {
 export default function HomePage() {
   return (
     <div className="container max-w-screen-2xl px-4 py-12 mx-auto">
-      {/* Hero Section */}
       <section className="text-center mb-16">
         <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-foreground to-foreground/60 bg-clip-text text-transparent">
           Welcome to My Blog
@@ -71,12 +69,11 @@ export default function HomePage() {
       </section>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Recent Posts */}
         <div className="lg:col-span-2 space-y-6">
           <div className="flex items-center justify-between">
             <h2 className="text-2xl font-bold">최근 포스트</h2>
             <Link href="/blog" className="text-primary hover:underline text-sm">
-              모든 글 보기 →
+              모든 글 보기
             </Link>
           </div>
           <div className="space-y-4">
@@ -115,9 +112,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Sidebar */}
         <aside className="space-y-8">
-          {/* Categories */}
           <div className="rounded-lg border border-border/50 bg-card p-6">
             <h3 className="text-lg font-semibold mb-4">카테고리</h3>
             <div className="space-y-2">
@@ -136,7 +131,6 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Tags */}
           <div className="rounded-lg border border-border/50 bg-card p-6">
             <h3 className="text-lg font-semibold mb-4">태그</h3>
             <div className="flex flex-wrap gap-2">
@@ -152,7 +146,6 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* About */}
           <div className="rounded-lg border border-border/50 bg-card p-6">
             <h3 className="text-lg font-semibold mb-4">About</h3>
             <p className="text-sm text-muted-foreground mb-4">
@@ -163,7 +156,7 @@ export default function HomePage() {
               href="/about"
               className="text-primary hover:underline text-sm"
             >
-              더 알아보기 →
+              더 알아보기
             </Link>
           </div>
         </aside>
