@@ -1,5 +1,6 @@
 import Link from "next/link"
 
+// Sample blog posts data
 const samplePosts = [
   {
     slug: "javascript-arrowfn",

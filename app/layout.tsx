@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
-import "./globals.css"
 import Link from "next/link"
+import "./globals.css"
 
 const geistSans = Geist({
   subsets: ["latin"],
@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Hun Jung | Developer Blog",
-  description: "Frontend & Backend 개발자 Hun Jung의 기술 블로그",
+  description: "Frontend & Backend 개발자 Hun Jung의 기술 블로그입니다",
 }
 
 export default function RootLayout({
